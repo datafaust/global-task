@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as TaskManager from 'expo-task-manager';
-import { View, Button, Text, Alert, AsyncStorage } from "react-native";
+import { View, Button, Text, Alert, AsyncStorage, Platform } from "react-native";
 import * as Location from "expo-location";
 import { getDistance } from "geolib";
 const moment = require("moment");
@@ -133,19 +133,46 @@ class App extends Component {
 
   //START LOCATION TRACKING
   startBackgroundUpdate = async () => {
-    Alert.alert('TRACKING IS STARTED')
-    await Location.startLocationUpdatesAsync(TASK_FETCH_LOCATION_TEST, {
-      accuracy: Location.Accuracy.BestForNavigation,
-      timeInterval: 1000,
-      distanceInterval: 1, // minimum change (in meters) betweens updates
-      //deferredUpdatesInterval: 1000, // minimum interval (in milliseconds) between updates
-      // foregroundService is how you get the task to be updated as often as would be if the app was open
-      foregroundService: {
-        notificationTitle: 'Using your location for TESTING',
-        notificationBody: 'To turn off, go back to the app and toggle tracking.',
-      },
-      pausesUpdatesAutomatically: false,
-    });
+    Alert.alert('TRACKING IS STARTED');
+
+    if(Platform.OS==='ios') {
+
+      await Location.startLocationUpdatesAsync(TASK_FETCH_LOCATION_TEST, {
+        accuracy: Location.Accuracy.BestForNavigation,
+        //timeInterval: 1000,
+        distanceInterval: 2, // minimum change (in meters) betweens updates
+        //deferredUpdatesInterval: 1000, // minimum interval (in milliseconds) between updates
+        // foregroundService is how you get the task to be updated as often as would be if the app was open
+        foregroundService: {
+          notificationTitle: 'Using your location for TESTING',
+          notificationBody: 'To turn off, go back to the app and toggle tracking.',
+        },
+        pausesUpdatesAutomatically: false,
+      });
+
+    } else {
+
+      await Location.startLocationUpdatesAsync(TASK_FETCH_LOCATION_TEST, {
+        accuracy: Location.Accuracy.BestForNavigation,
+        timeInterval: 60000,
+        //distanceInterval: 1, // minimum change (in meters) betweens updates
+        //deferredUpdatesInterval: 1000, // minimum interval (in milliseconds) between updates
+        // foregroundService is how you get the task to be updated as often as would be if the app was open
+        foregroundService: {
+          notificationTitle: 'Using your location for TESTING',
+          notificationBody: 'To turn off, go back to the app and toggle tracking.',
+        },
+        pausesUpdatesAutomatically: false,
+      });
+
+
+    }
+
+
+
+
+
+   
 
 
   }

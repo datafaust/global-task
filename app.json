@@ -1,10 +1,15 @@
 {
   "expo": {
-    "name": "global-task",
-    "slug": "global-task",
-    "version": "1.0.0",
+    "name": "VolleyPal",
+    "slug": "VolleyPal_Beta",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.3",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/appstore.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -17,16 +22,22 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+      "supportsTablet": true,
+      "bundleIdentifier": "com.vcoolstudio.volleypal",
+      "buildNumber": "1.0.3",
+      "infoPlist": {
+        "NSLocationAlwaysUsageDescription": "something",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Allow VolleyPal always to use your location. Your location is used to check you in at the appropriate playground. Your location data are not used or stored in any other way or for any other purpose.",
+        "UIBackgroundModes": [
+          "location",
+          "fetch"
+        ]
       }
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "android": {
+      "package": "com.vcoolstudio.volleypal",
+      "versionCode": 14
+    },
+    "description": ""
   }
 }
