@@ -152,8 +152,11 @@ class App extends Component {
 
   stopBackgroundUpdate = async () => {
     Alert.alert('TRACKING IS STOPPED');
-    Location.stopLocationUpdatesAsync(TASK_FETCH_LOCATION_TEST)
-    //TaskManager.unregisterTaskAsync(TASK_FETCH_LOCATION_TEST);
+    //Location.stopLocationUpdatesAsync(TASK_FETCH_LOCATION_TEST)
+
+    //UNREGISTER TASK
+    //const TASK_FETCH_LOCATION_TEST = 'background-location-task_global';
+    TaskManager.unregisterTaskAsync(TASK_FETCH_LOCATION_TEST);
   }
 
 
